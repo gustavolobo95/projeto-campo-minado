@@ -2,6 +2,7 @@ package br.com.cursocod3r.cm.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Tabuleiro {
 
@@ -22,15 +23,30 @@ public class Tabuleiro {
 	}
 
 	private void gerarCampos() {
-		
+		for(int linhaAtual = 0; linhaAtual < quantidadeDeLinhas; linhaAtual++) {
+			for(int colunaAtual = 0; colunaAtual < quantidadeDeColunas; colunaAtual ++) {
+				campos.add(new Campo(linhaAtual, colunaAtual));
+			}
+		}
 	}
 	
 	private void associarVizinhos() {
-		
+		for(Campo campo: campos) {
+			for(Campo campo2: campos) {
+				campo.adicionarVizinho(campo2);
+			}
+		}
 	}
 	
 	private void sortearMinas() {
-
+		long minasArmadas = 0;
+		Random aleatorio = new Random();
+		do {
+			minasArmadas = campos.stream()
+					.filter(campo -> campo.isMinado())
+					.count();
+			campos.get(aleatorio.nextInt(0, campos.size())).minar();
+		} while(minasArmadas < quantidadeDeMinas);
 	}
 	
 }
