@@ -15,6 +15,22 @@ public class Tabuleiro {
 		this.quantidadeDeLinhas = quantidadeDeLinhas;
 		this.quantidadeDeColunas = quantidadeDeColunas;
 		this.quantidadeDeMinas = quantidadeDeMinas;
+		
+		gerarCampos();
+		associarVizinhos();
+		sortearMinas();
+	}
+
+	private void gerarCampos() {
+		
+	}
+	
+	private void associarVizinhos() {
+		
+	}
+	
+	private void sortearMinas() {
+
 	}
 	
 }
