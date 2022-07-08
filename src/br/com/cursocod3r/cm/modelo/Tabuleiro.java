@@ -58,6 +58,22 @@ public class Tabuleiro {
 		sortearMinas();
 	}
 	
+	public void abrirCampo(int linha, int coluna) {
+		campos.stream()
+				.filter(campo -> 
+				campo.getLinha() == linha && campo.getColuna() == coluna)
+				.findFirst()
+				.ifPresent(campo -> campo.abrir());;
+	}
+	
+	public void alternarMarcacao(int linha, int coluna) {
+		campos.stream()
+				.filter(campo ->
+				campo.getLinha() == linha && campo.getColuna() == coluna)
+				.findFirst()
+				.ifPresent(campo -> campo.alternarMarcacao());
+	}
+	
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
 		int i = 0;
