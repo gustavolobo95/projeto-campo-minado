@@ -66,6 +66,7 @@ public class Tabuleiro {
 				stringBuilder.append(" ");
 				stringBuilder.append(campos.get(i));
 				stringBuilder.append(" ");
+				i++;
 			}
 			stringBuilder.append("\n");
 		}
