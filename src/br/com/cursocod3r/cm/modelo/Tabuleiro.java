@@ -49,4 +49,13 @@ public class Tabuleiro {
 		} while(minasArmadas < quantidadeDeMinas);
 	}
 	
+	public boolean objetivoAlcancado() {
+		return campos.stream().allMatch(campo -> campo.objetivoAlcancado());
+	}
+	
+	public void reiniciar() {
+		campos.stream().forEach(campo -> campo.reiniciar());
+		sortearMinas();
+	}
+	
 }
