@@ -2,6 +2,7 @@ package br.com.cursocod3r.cm.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class Tabuleiro {
@@ -58,6 +59,10 @@ public class Tabuleiro {
 		sortearMinas();
 	}
 	
+	public void reiniciarSemSortearMinas() {
+		campos.stream().forEach(campo -> campo.reiniciar());
+	}
+	
 	public void abrirCampo(int linha, int coluna) {
 		campos.stream()
 				.filter(campo -> 
@@ -87,6 +92,17 @@ public class Tabuleiro {
 			stringBuilder.append("\n");
 		}
 		return stringBuilder.toString();
+	}
+
+	public long contarCampos() {
+		return campos.stream().count();
+	}
+	
+	public Campo getCampo(int linha, int coluna) {
+		return campos.stream()
+						.filter(campo -> campo.getLinha() == linha && campo.getColuna() == coluna)
+						.findFirst()
+						.get();
 	}
 	
 }
