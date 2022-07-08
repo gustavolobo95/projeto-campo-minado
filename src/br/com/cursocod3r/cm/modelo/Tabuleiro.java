@@ -58,4 +58,18 @@ public class Tabuleiro {
 		sortearMinas();
 	}
 	
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		int i = 0;
+		for(int linhaAtual = 0; linhaAtual < quantidadeDeLinhas; linhaAtual++) {
+			for(int colunaAtual = 0; colunaAtual < quantidadeDeColunas; colunaAtual++) {
+				stringBuilder.append(" ");
+				stringBuilder.append(campos.get(i));
+				stringBuilder.append(" ");
+			}
+			stringBuilder.append("\n");
+		}
+		return stringBuilder.toString();
+	}
+	
 }
