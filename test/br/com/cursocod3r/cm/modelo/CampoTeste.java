@@ -208,9 +208,35 @@ class CampoTeste {
 	void testeGetLinha() {
 		assertEquals(3, campo.getLinha());
 	}
-	
+
 	@Test
 	void testeGetColuna() {
-		assertEquals(3, 3);
+		assertEquals(3, campo.getColuna());
+	}
+	
+	@Test
+	void testeReiniciar() {
+		campo.minar();
+		campo.alternarMarcacao();
+		campo.reiniciar();
+		assertFalse(campo.isMinado());
+		assertFalse(campo.isAberto());
+		assertFalse(campo.isMarcado());
+	}
+	
+	@Test
+	void testeObjetivoAlcancado() {
+		Campo vizinho = new Campo(2, 2);
+		vizinho.minar();
+		campo.adicionarVizinho(vizinho);
+		campo.abrir();
+		vizinho.alternarMarcacao();
+		assertTrue(campo.objetivoAlcancado());
+		assertTrue(vizinho.objetivoAlcancado());
+	}
+	
+	@Test
+	void testeIsFechado() {
+		assertTrue(campo.isFechado());
 	}
 }
