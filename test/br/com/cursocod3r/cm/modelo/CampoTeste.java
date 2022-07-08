@@ -1,6 +1,9 @@
 package br.com.cursocod3r.cm.modelo;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -166,4 +169,48 @@ class CampoTeste {
 		assertFalse(vizinho.isAberto() && vizinhoDoVizinho.isAberto());
 	}
 	
+	@Test
+	void testeStringValorPadrao() {
+		assertEquals("?", campo.toString());
+	}
+	
+	@Test
+	void testeStringValorMarcado() {
+		campo.alternarMarcacao();
+		assertEquals("X", campo.toString());
+	}
+	
+	@Test
+	void testeStringValorAbertoMinado() {
+		campo.minar();
+		assertThrows(ExplosaoException.class, () -> {
+			campo.abrir();
+		});
+		assertEquals("*", campo.toString());
+	}
+	
+	@Test
+	void testeStringAbertoComMinasNaVizinhanca() {
+		Campo vizinho = new Campo(2, 2);
+		vizinho.minar();
+		campo.adicionarVizinho(vizinho);
+		campo.abrir();
+		assertEquals("1", campo.toString());
+	}
+	
+	@Test
+	void testeStringAbertoValorPadrao() {
+		campo.abrir();
+		assertEquals(" ", campo.toString());
+	}
+	
+	@Test
+	void testeGetLinha() {
+		assertEquals(3, campo.getLinha());
+	}
+	
+	@Test
+	void testeGetColuna() {
+		assertEquals(3, 3);
+	}
 }
