@@ -2,7 +2,6 @@ package br.com.cursocod3r.cm.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 public class Tabuleiro {
@@ -43,10 +42,10 @@ public class Tabuleiro {
 		long minasArmadas = 0;
 		Random aleatorio = new Random();
 		do {
+			campos.get(aleatorio.nextInt(0, campos.size())).minar();
 			minasArmadas = campos.stream()
 					.filter(campo -> campo.isMinado())
 					.count();
-			campos.get(aleatorio.nextInt(0, campos.size())).minar();
 		} while(minasArmadas < quantidadeDeMinas);
 	}
 	
