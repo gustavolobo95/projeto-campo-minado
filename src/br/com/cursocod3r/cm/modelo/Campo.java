@@ -125,5 +125,9 @@ public class Campo {
 	public int getColuna() {
 		return coluna;
 	}
+
+	void setAberto(boolean aberto) {
+		this.aberto = aberto;
+	}
 	
 }
