@@ -1,9 +1,12 @@
 package br.com.cursocod3r.cm.modelo;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import br.com.cursocod3r.cm.excecao.ExplosaoException;
 
 class TabuleiroTeste {
 
@@ -31,6 +34,20 @@ class TabuleiroTeste {
 		tabuleiro.reiniciarSemSortearMinas();
 		tabuleiro.abrirCampo(3, 3);
 		assertEquals(" ", tabuleiro.getCampo(3, 3).toString());
+	}
+	
+	@Test
+	void testeAbrirCampoMinado() {
+		tabuleiro.reiniciarSemSortearMinas();
+		tabuleiro.getCampo(3, 3).minar();
+		assertThrows(ExplosaoException.class, () -> {
+			tabuleiro.abrirCampo(3, 3);
+		});
+		for(int linha = 0; linha < 6; linha++) {
+			for(int coluna = 0; coluna < 6; coluna ++) {
+				assertTrue(tabuleiro.getCampo(linha, coluna).isAberto());
+			}
+		}
 	}
 	
 	@Test
