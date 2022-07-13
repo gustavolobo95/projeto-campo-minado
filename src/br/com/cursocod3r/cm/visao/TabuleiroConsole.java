@@ -51,22 +51,19 @@ public class TabuleiroConsole {
 						Arrays.stream(digitado.split(","))
 						.map(string -> Integer.parseInt(string.trim()))
 						.iterator();
-				
-				System.out.println(xy.next());
-				System.out.println(xy.next());
 
-				digitado = capturarValorDigitado("1 - Abrir ou 2 - (Des)Marcar");
+				digitado = capturarValorDigitado("1 - Abrir ou 2 - (Des)Marcar: ");
 				
-				if(digitado.equalsIgnoreCase("1")) {
+				if("1".equals(digitado)) {
 					tabuleiro.abrirCampo(xy.next(), xy.next());
-				} else if(digitado.equalsIgnoreCase("2")) {
+				} else if("2".equals(digitado)) {
 					tabuleiro.alternarMarcacao(xy.next(), xy.next());
 				} 
-				
 			}
 			
 			System.out.println("Você ganhou!");
 		} catch(ExplosaoException e) {
+			System.out.println(tabuleiro);
 			System.out.println("Você perdeu!");
 		}
 		
