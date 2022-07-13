@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import br.com.cursocod3r.cm.excecao.ExplosaoException;
+
 public class Tabuleiro {
 
 	private int quantidadeDeLinhas;
@@ -63,11 +65,16 @@ public class Tabuleiro {
 	}
 	
 	public void abrirCampo(int linha, int coluna) {
-		campos.stream()
-				.filter(campo -> 
-				campo.getLinha() == linha && campo.getColuna() == coluna)
-				.findFirst()
-				.ifPresent(campo -> campo.abrir());;
+		try {
+			campos.stream()
+			.filter(campo -> 
+			campo.getLinha() == linha && campo.getColuna() == coluna)
+			.findFirst()
+			.ifPresent(campo -> campo.abrir());;	
+		} catch(ExplosaoException explosao) {
+			campos.forEach(campo -> campo.setAberto(true));
+			throw explosao;
+		}
 	}
 	
 	public void alternarMarcacao(int linha, int coluna) {
